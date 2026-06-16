@@ -140,7 +140,7 @@ if (isset($_GET['editar'])) {
             <td class="<?= $a['estado_atleta'] ?>"><?= $a['estado_atleta'] ?></td>
             <td>
                 <a href="atletas.php?editar=<?= $a['id'] ?>" class="btn btn-editar">Editar</a>
-                <a href="atletas.php?apagar=<?= $a['id'] ?>" class="btn btn-inativar" onclick="return confirm('Tens a certeza que queres inativar este atleta?')">Inativar</a>
+                <a href="atletas.php?apagar=<?= $a['id'] ?>" class="btn btn-inativar" onclick="return confirm('Tens a certeza que queres desativar este atleta?')">Desativar</a>
             </td>
         </tr>
         <?php endforeach; ?>
