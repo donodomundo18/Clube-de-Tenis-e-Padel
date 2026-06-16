@@ -32,7 +32,7 @@ verificarOperador();
     <div class="cards">
         <a href="campos.php" class="card"><h3>Campos</h3></a>
         <a href="atletas.php" class="card"><h3>Atletas</h3></a>
-        <a href="reservas.php" class="card"><h3>Reservas</h3></a>
+        <a href="admin.reservas.php" class="card"><h3>Reservas</h3></a>
         <a href="pagamentos.php" class="card"><h3>Pagamentos</h3></a>
         <a href="relatorios.php" class="card"><h3>Relatorios</h3></a>
     </div>
