@@ -51,7 +51,7 @@ if (isset($_GET['editar'])) {
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
-    <title>Campos - Backoffice</title>
+    <title>Gerir Campos - Clube de Ténis e Pádel</title>
     <style>
         body { font-family: Arial; margin: 0; background: #f5f5f5; }
         nav { background: green; padding: 10px 20px; color: white; display: flex; justify-content: space-between; }
