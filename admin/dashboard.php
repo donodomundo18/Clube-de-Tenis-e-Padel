@@ -35,6 +35,9 @@ verificarOperador();
         <a href="admin.reservas.php" class="card"><h3>Reservas</h3></a>
         <a href="pagamentos.php" class="card"><h3>Pagamentos</h3></a>
         <a href="relatorios.php" class="card"><h3>Relatorios</h3></a>
+        <?php if ($_SESSION['tipo'] === 'gestor'): ?>
+        <a href="operadores.php" class="card"><h3>Operadores</h3></a>
+        <?php endif; ?>
     </div>
 </div>
 </body>
