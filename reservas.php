@@ -10,7 +10,7 @@ if (!estaLogado() || $_SESSION['tipo'] !== 'atleta') {
 // cancelar reserva
 if (isset($_GET['cancelar'])) {
     $id = $_GET['cancelar'];
-    // verificar se é do atleta e se ainda da para cancelar (24h antes)
+    // verificar se e do atleta e se ainda da para cancelar (24h antes)
     $stmt = $pdo->prepare("SELECT * FROM reserva WHERE id = ? AND atleta_id = ?");
     $stmt->execute([$id, $_SESSION['atleta_id']]);
     $reserva = $stmt->fetch();
@@ -20,7 +20,7 @@ if (isset($_GET['cancelar'])) {
         $diferenca = strtotime($data_hora_inicio) - time();
 
         if ($diferenca < 86400) {
-            $erro = 'Nao podes cancelar uma reserva com menos de 24 horas de antecedencia!';
+            $erro = 'Nao podes cancelar esta reserva! Faltam menos de 24 horas para o jogo.';
         } else {
             $stmt = $pdo->prepare("UPDATE reserva SET estado_reserva = 'cancelada' WHERE id = ?");
             $stmt->execute([$id]);
@@ -63,6 +63,7 @@ $reservas = $stmt->fetchAll();
 <nav>
     <span>Clube de Ténis e Pádel</span>
     <div>
+        <span>Ola, <?= $_SESSION['nome'] ?></span>
         <a href="index.php">Inicio</a>
         <a href="nova_reserva.php">Nova Reserva</a>
         <a href="logout.php">Sair</a>
@@ -73,7 +74,7 @@ $reservas = $stmt->fetchAll();
     <h2>As Minhas Reservas</h2>
 
     <div class="aviso">
-        Podes cancelar uma reserva ate 24 horas antes do inicio do jogo.
+        Atencao: so podes cancelar uma reserva ate 24 horas antes do inicio do jogo.
     </div>
 
     <?php if (isset($erro)): ?>
@@ -82,8 +83,8 @@ $reservas = $stmt->fetchAll();
 
     <?php if (count($reservas) === 0): ?>
         <div class="sem-reservas">
-            <p>Ainda nao tens reservas.</p>
-            <a href="nova_reserva.php" style="color:green;">Faz a tua primeira reserva aqui!</a>
+            <p>Ainda nao tens nenhuma reserva feita.</p>
+            <a href="nova_reserva.php" style="color:green;">Clica aqui para fazer a tua primeira reserva!</a>
         </div>
     <?php else: ?>
     <table>
