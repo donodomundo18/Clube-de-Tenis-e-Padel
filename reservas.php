@@ -53,14 +53,17 @@ $reservas = $stmt->fetchAll();
         .aviso { background: #fff3cd; color: #856404; padding: 10px 15px; border-radius: 6px; margin-bottom: 20px; font-size: 13px; border-left: 4px solid #f47c3c; }
         .erro { background: #ffe0e0; color: red; padding: 10px 15px; border-radius: 6px; margin-bottom: 15px; font-size: 13px; border-left: 4px solid red; }
         table { width: 100%; border-collapse: collapse; background: white; border-radius: 8px; overflow: hidden; }
-        th, td { padding: 10px 12px; border-bottom: 1px solid #eee; font-size: 13px; text-align: left; }
+        th, td { padding: 10px 12px; border-bottom: 1px solid #eee; font-size: 13px; text-align: left; vertical-align: middle; }
         th { background: #1e3a5f; color: white; }
         tr:hover { background: #f9f9f9; }
         .ativa { color: #1a6b1a; font-weight: bold; }
         .cancelada { color: red; }
         .concluida { color: gray; }
+        .acoes { display: flex; gap: 5px; flex-wrap: wrap; }
         .btn-cancelar { padding: 5px 10px; background: red; color: white; border: none; border-radius: 4px; cursor: pointer; text-decoration: none; font-size: 12px; }
         .btn-cancelar:hover { background: darkred; }
+        .btn-editar { padding: 5px 10px; background: #f47c3c; color: white; border: none; border-radius: 4px; cursor: pointer; text-decoration: none; font-size: 12px; }
+        .btn-editar:hover { background: #d4622c; }
         .sem-reservas { background: white; padding: 40px; text-align: center; border-radius: 8px; color: #888; }
         .btn-nova { display: inline-block; margin-top: 15px; padding: 10px 20px; background: #f47c3c; color: white; border-radius: 5px; text-decoration: none; font-size: 13px; }
         .btn-nova:hover { background: #d4622c; }
@@ -85,7 +88,7 @@ $reservas = $stmt->fetchAll();
 
 <div class="container">
     <div class="aviso">
-        Atenção: só podes cancelar uma reserva até 24 horas antes do início do jogo.
+        Atenção: só podes editar ou cancelar uma reserva até 24 horas antes do início do jogo.
     </div>
 
     <?php if (isset($erro)): ?>
@@ -126,7 +129,10 @@ $reservas = $stmt->fetchAll();
                 $diff = strtotime($data_hora) - time();
                 if ($r['estado_reserva'] === 'ativa' && $diff > 86400):
                 ?>
-                    <a href="reservas.php?cancelar=<?= $r['id'] ?>" class="btn-cancelar" onclick="return confirm('Tens a certeza que queres cancelar esta reserva?')">Cancelar</a>
+                    <div class="acoes">
+                        <a href="editar_reserva.php?id=<?= $r['id'] ?>" class="btn-editar">Editar</a>
+                        <a href="reservas.php?cancelar=<?= $r['id'] ?>" class="btn-cancelar" onclick="return confirm('Tens a certeza que queres cancelar esta reserva?')">Cancelar</a>
+                    </div>
                 <?php else: ?>
                     -
                 <?php endif; ?>
