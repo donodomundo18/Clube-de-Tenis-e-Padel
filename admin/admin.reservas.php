@@ -21,7 +21,6 @@ if (isset($_GET['cancelar'])) {
     exit();
 }
 
-// buscar todas as reservas
 $reservas = $pdo->query("SELECT r.*, a.nome as nome_atleta FROM reserva r JOIN atleta a ON r.atleta_id = a.id ORDER BY r.data_jogo DESC")->fetchAll();
 ?>
 <!DOCTYPE html>
@@ -30,46 +29,58 @@ $reservas = $pdo->query("SELECT r.*, a.nome as nome_atleta FROM reserva r JOIN a
     <meta charset="UTF-8">
     <title>Reservas - Backoffice</title>
     <style>
-        body { font-family: Arial; margin: 0; background: #f5f5f5; }
-        nav { background: green; padding: 10px 20px; color: white; display: flex; justify-content: space-between; }
-        nav a { color: white; margin-left: 10px; text-decoration: none; }
-        .container { max-width: 1100px; margin: 30px auto; padding: 20px; }
-        h2 { color: green; }
-        table { width: 100%; border-collapse: collapse; background: white; }
-        th, td { padding: 8px 10px; border: 1px solid #ddd; font-size: 12px; text-align: left; }
-        th { background: green; color: white; }
-        .ativa { color: green; font-weight: bold; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial; background: #f4f4f4; }
+        nav { background: #1e3a5f; padding: 12px 25px; display: flex; justify-content: space-between; align-items: center; }
+        nav span { color: white; font-size: 16px; font-weight: bold; }
+        nav a { color: white; text-decoration: none; margin-left: 8px; font-size: 13px; padding: 7px 14px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.3); }
+        nav a:hover { background: #f47c3c; border-color: #f47c3c; }
+        .topo { background: #1e3a5f; color: white; padding: 25px; text-align: center; }
+        .topo h1 { font-size: 20px; }
+        .topo p { font-size: 13px; color: #aac; margin-top: 5px; }
+        .container { max-width: 1100px; margin: 30px auto; padding: 0 20px; }
+        table { width: 100%; border-collapse: collapse; background: white; border-radius: 8px; overflow: hidden; }
+        th, td { padding: 10px 12px; border-bottom: 1px solid #eee; font-size: 12px; text-align: left; }
+        th { background: #1e3a5f; color: white; }
+        tr:hover { background: #f9f9f9; }
+        .ativa { color: #1a6b1a; font-weight: bold; }
         .cancelada { color: red; }
         .concluida { color: gray; }
-        .btn { padding: 4px 8px; border: none; border-radius: 4px; cursor: pointer; text-decoration: none; font-size: 11px; }
-        .btn-checkin { background: blue; color: white; }
+        .btn { padding: 5px 10px; border: none; border-radius: 4px; cursor: pointer; text-decoration: none; font-size: 11px; margin-right: 4px; }
+        .btn-checkin { background: #1e3a5f; color: white; }
+        .btn-checkin:hover { background: #162d4a; }
         .btn-cancelar { background: red; color: white; }
+        .btn-cancelar:hover { background: darkred; }
     </style>
 </head>
 <body>
 <nav>
-    <span>Backoffice - Reservas</span>
+    <span>Backoffice - Clube de Ténis e Pádel</span>
     <div>
         <a href="dashboard.php">Dashboard</a>
-        <a href="../logout.php">Sair</a>
+        <a href="../logout.php">Logout</a>
     </div>
 </nav>
 
+<div class="topo">
+    <h1>Gerir Reservas</h1>
+    <p>Consulta todas as reservas e efetua check-in dos atletas</p>
+</div>
+
 <div class="container">
-    <h2>Gerir Reservas</h2>
     <table>
         <tr>
             <th>ID</th>
             <th>Atleta</th>
             <th>Campo</th>
             <th>Data</th>
-            <th>Hora Inicio</th>
+            <th>Hora Início</th>
             <th>Hora Fim</th>
-            <th>Iluminacao</th>
+            <th>Iluminação</th>
             <th>Total</th>
             <th>Estado</th>
             <th>Check-in</th>
-            <th>Acoes</th>
+            <th>Ações</th>
         </tr>
         <?php foreach ($reservas as $r): ?>
         <tr>
@@ -79,7 +90,7 @@ $reservas = $pdo->query("SELECT r.*, a.nome as nome_atleta FROM reserva r JOIN a
             <td><?= $r['data_jogo'] ?></td>
             <td><?= $r['hora_inicio'] ?></td>
             <td><?= $r['hora_fim'] ?></td>
-            <td><?= $r['suplemento_iluminacao'] ? 'Sim' : 'Nao' ?></td>
+            <td><?= $r['suplemento_iluminacao'] ? 'Sim' : 'Não' ?></td>
             <td><?= number_format($r['valor_total'], 2) ?>€</td>
             <td class="<?= $r['estado_reserva'] ?>"><?= $r['estado_reserva'] ?></td>
             <td><?= $r['checkin'] ? 'Confirmado' : 'Pendente' ?></td>
