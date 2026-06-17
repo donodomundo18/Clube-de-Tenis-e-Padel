@@ -69,7 +69,7 @@ require_once 'includes/session.php';
     <div class="caixa">
         <h3>Contactos</h3>
         <p>Email: clube@tenis-padel.pt</p>
-        <p>Telefone: 210 000 000</p>
+        <p>Telefone: 213 456 789</p>
         <p>Morada: Lisboa, Portugal</p>
     </div>
 </div>
