@@ -17,8 +17,8 @@ if (!estaLogado()) {
         body { font-family: Arial; background: #f4f4f4; }
         nav { background: #1e3a5f; padding: 12px 25px; display: flex; justify-content: space-between; align-items: center; }
         nav span { color: white; font-size: 16px; font-weight: bold; }
-        nav a { color: white; text-decoration: none; margin-left: 12px; font-size: 13px; padding: 6px 12px; border-radius: 4px; }
-        nav a:hover { background: #f47c3c; }
+        nav a { color: white; text-decoration: none; margin-left: 8px; font-size: 13px; padding: 7px 14px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.3); }
+        nav a:hover { background: #f47c3c; border-color: #f47c3c; }
         .hero { background: #1e3a5f; color: white; text-align: center; padding: 55px 20px; }
         .hero h1 { font-size: 24px; margin-bottom: 8px; }
         .hero p { font-size: 13px; color: #aac; margin-bottom: 8px; }
@@ -43,10 +43,10 @@ if (!estaLogado()) {
     <span>Clube de Ténis e Pádel</span>
     <div>
         <?php if ($_SESSION['tipo'] === 'atleta'): ?>
-            <a href="index.php">Inicio</a>
+            <a href="index.php">Início</a>
             <a href="reservas.php">As minhas reservas</a>
             <a href="nova_reserva.php">Nova Reserva</a>
-            <a href="sobre.php">Sobre nos</a>
+            <a href="sobre.php">Sobre nós</a>
             <a href="logout.php">Logout</a>
         <?php else: ?>
             <a href="admin/dashboard.php">Backoffice</a>
@@ -58,8 +58,8 @@ if (!estaLogado()) {
 <?php if ($_SESSION['tipo'] === 'atleta'): ?>
 <div class="hero">
     <h1>Clube de Ténis e Pádel</h1>
-    <p>Gere as tuas reservas de campo de forma simples e rapida.</p>
-    <p class="nome">Ola, <?= $_SESSION['nome'] ?>!</p>
+    <p>Gere as tuas reservas de campo de forma simples e rápida.</p>
+    <p class="nome">Olá, <?= $_SESSION['nome'] ?>!</p>
     <a href="nova_reserva.php" class="btn">Reservar Campo</a>
 </div>
 
@@ -68,7 +68,7 @@ if (!estaLogado()) {
     <div class="cards">
         <a href="nova_reserva.php" class="card-link">
             <h3>Nova Reserva</h3>
-            <p>Escolhe o tipo de campo, data e horario e faz a tua reserva.</p>
+            <p>Escolhe o tipo de campo, data e horário e faz a tua reserva.</p>
         </a>
         <a href="reservas.php" class="card-link">
             <h3>As Minhas Reservas</h3>
@@ -76,32 +76,32 @@ if (!estaLogado()) {
         </a>
         <a href="sobre.php" class="card-link">
             <h3>Sobre o Clube</h3>
-            <p>Conhece os nossos campos, horarios e contactos.</p>
+            <p>Conhece os nossos campos, horários e contactos.</p>
         </a>
     </div>
 
-    <p class="secao-titulo">Tipos de campo disponiveis</p>
+    <p class="secao-titulo">Tipos de campo disponíveis</p>
     <div class="cards">
         <div class="card">
-            <h3>Padel Coberto</h3>
-            <p>Campo interior com piso sintetico. Disponivel todos os dias.</p>
+            <h3>Pádel Coberto</h3>
+            <p>Campo interior com piso sintético. Disponível todos os dias.</p>
         </div>
         <div class="card">
-            <h3>Tenis Terra Batida</h3>
-            <p>Campo classico de terra batida para todos os niveis.</p>
+            <h3>Ténis Terra Batida</h3>
+            <p>Campo clássico de terra batida para todos os níveis.</p>
         </div>
         <div class="card">
-            <h3>Tenis Rapido</h3>
-            <p>Campo de piso rapido coberto ideal para jogos competitivos.</p>
+            <h3>Ténis Rápido</h3>
+            <p>Campo de piso rápido coberto ideal para jogos competitivos.</p>
         </div>
     </div>
 </div>
 
 <?php else: ?>
 <div class="hero">
-    <h1>Area de Gestao</h1>
-    <p>Acede ao painel de administracao do clube.</p>
-    <p class="nome">Ola, <?= $_SESSION['nome'] ?>!</p>
+    <h1>Área de Gestão</h1>
+    <p>Acede ao painel de administração do clube.</p>
+    <p class="nome">Olá, <?= $_SESSION['nome'] ?>!</p>
     <a href="admin/dashboard.php" class="btn">Ir para o Backoffice</a>
 </div>
 <?php endif; ?>
