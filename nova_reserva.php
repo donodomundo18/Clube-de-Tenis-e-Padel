@@ -95,7 +95,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <div class="container">
     <div class="aviso">
-        Atenção: podes cancelar ou editar a tua reserva até 24 horas antes do início do jogo.
+       Atenção: podes editar ou cancelar a tua reserva até 24 horas antes do início do jogo.
     </div>
 
     <?php if ($erro): ?>
