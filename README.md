@@ -33,8 +33,8 @@ Aplicacao web para a gestao integral de um clube desportivo. Permite que atletas
 
 ## Credenciais de teste
 
-- Gestor: gestor@clube.pt / password
-- Rececionista: rececionista@clube.pt / password
+- Gestor: gestor@clube.pt / password 123456
+- Rececionista: rececionista@clube.pt / password 123456
 
 ## Autor
 
