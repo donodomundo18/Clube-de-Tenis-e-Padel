@@ -48,29 +48,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <title>Login - Clube de Ténis e Pádel</title>
     <style>
-        body { font-family: Arial; background: #f0f0f0; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        .box { background: white; padding: 40px; border-radius: 8px; width: 350px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
-        h2 { text-align: center; color: green; margin-bottom: 5px; }
-        .subtitulo { text-align: center; color: #888; font-size: 13px; margin-bottom: 20px; }
-        input { width: 100%; padding: 10px; margin: 6px 0 12px 0; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; }
-        button { width: 100%; padding: 12px; background: green; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 15px; }
-        button:hover { background: darkgreen; }
-        .erro { color: red; text-align: center; margin-bottom: 10px; font-size: 13px; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial; background: #1e3a5f; display: flex; justify-content: center; align-items: center; height: 100vh; }
+        .box { background: white; padding: 40px; border-radius: 10px; width: 370px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
+        .titulo { text-align: center; color: #1e3a5f; font-size: 18px; font-weight: bold; margin-bottom: 5px; }
+        .subtitulo { text-align: center; color: #888; font-size: 13px; margin-bottom: 25px; }
+        label { font-size: 13px; color: #555; display: block; margin-bottom: 4px; }
+        input { width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 5px; font-size: 13px; }
+        input:focus { border-color: #1e3a5f; outline: none; }
+        button { width: 100%; padding: 12px; background: #f47c3c; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 15px; }
+        button:hover { background: #d4622c; }
+        .erro { background: #ffe0e0; color: red; padding: 10px; border-radius: 5px; margin-bottom: 15px; font-size: 13px; text-align: center; }
         .link { text-align: center; margin-top: 15px; font-size: 13px; }
-        a { color: green; }
+        a { color: #f47c3c; }
+        a:hover { color: #d4622c; }
     </style>
 </head>
 <body>
 <div class="box">
-    <h2>Clube de Ténis e Pádel</h2>
+    <p class="titulo">Clube de Ténis e Pádel</p>
     <p class="subtitulo">Inicia sessão para acederes à tua conta</p>
     <?php if ($erro): ?>
-        <p class="erro"><?= $erro ?></p>
+        <div class="erro"><?= $erro ?></div>
     <?php endif; ?>
     <form method="POST">
-        <label style="font-size:13px;">Email</label>
+        <label>Email</label>
         <input type="email" name="email" placeholder="o-teu-email@exemplo.com" required>
-        <label style="font-size:13px;">Password</label>
+        <label>Password</label>
         <input type="password" name="password" placeholder="A tua password" required>
         <button type="submit">Entrar</button>
     </form>
