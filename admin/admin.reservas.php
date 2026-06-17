@@ -21,7 +21,11 @@ if (isset($_GET['cancelar'])) {
     exit();
 }
 
+// buscar todas as reservas com nome do atleta
 $reservas = $pdo->query("SELECT r.*, a.nome as nome_atleta FROM reserva r JOIN atleta a ON r.atleta_id = a.id ORDER BY r.data_jogo DESC")->fetchAll();
+
+// contar reservas ativas
+$total_ativas = $pdo->query("SELECT COUNT(*) FROM reserva WHERE estado_reserva = 'ativa'")->fetchColumn();
 ?>
 <!DOCTYPE html>
 <html lang="pt">
@@ -38,6 +42,7 @@ $reservas = $pdo->query("SELECT r.*, a.nome as nome_atleta FROM reserva r JOIN a
         .topo { background: #1e3a5f; color: white; padding: 25px; text-align: center; }
         .topo h1 { font-size: 20px; }
         .topo p { font-size: 13px; color: #aac; margin-top: 5px; }
+        .topo .badge { background: #f47c3c; color: white; padding: 4px 12px; border-radius: 20px; font-size: 12px; margin-top: 8px; display: inline-block; }
         .container { max-width: 1100px; margin: 30px auto; padding: 0 20px; }
         table { width: 100%; border-collapse: collapse; background: white; border-radius: 8px; overflow: hidden; }
         th, td { padding: 10px 12px; border-bottom: 1px solid #eee; font-size: 12px; text-align: left; vertical-align: middle; }
@@ -65,7 +70,8 @@ $reservas = $pdo->query("SELECT r.*, a.nome as nome_atleta FROM reserva r JOIN a
 
 <div class="topo">
     <h1>Gerir Reservas</h1>
-    <p>Consulta todas as reservas e efetua check-in dos atletas</p>
+    <p>Consulta, gere e efetua check-in de todas as reservas do clube</p>
+    <span class="badge"><?= $total_ativas ?> reservas ativas</span>
 </div>
 
 <div class="container">
@@ -101,7 +107,7 @@ $reservas = $pdo->query("SELECT r.*, a.nome as nome_atleta FROM reserva r JOIN a
                         <a href="admin.reservas.php?checkin=<?= $r['id'] ?>" class="btn btn-checkin">Check-in</a>
                     <?php endif; ?>
                     <?php if ($r['estado_reserva'] === 'ativa'): ?>
-                        <a href="admin.reservas.php?cancelar=<?= $r['id'] ?>" class="btn btn-cancelar" onclick="return confirm('Cancelar esta reserva?')">Cancelar</a>
+                        <a href="admin.reservas.php?cancelar=<?= $r['id'] ?>" class="btn btn-cancelar" onclick="return confirm('Tens a certeza que queres cancelar esta reserva?')">Cancelar</a>
                     <?php endif; ?>
                 </div>
             </td>
