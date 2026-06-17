@@ -40,13 +40,14 @@ $reservas = $pdo->query("SELECT r.*, a.nome as nome_atleta FROM reserva r JOIN a
         .topo p { font-size: 13px; color: #aac; margin-top: 5px; }
         .container { max-width: 1100px; margin: 30px auto; padding: 0 20px; }
         table { width: 100%; border-collapse: collapse; background: white; border-radius: 8px; overflow: hidden; }
-        th, td { padding: 10px 12px; border-bottom: 1px solid #eee; font-size: 12px; text-align: left; }
+        th, td { padding: 10px 12px; border-bottom: 1px solid #eee; font-size: 12px; text-align: left; vertical-align: middle; }
         th { background: #1e3a5f; color: white; }
         tr:hover { background: #f9f9f9; }
         .ativa { color: #1a6b1a; font-weight: bold; }
         .cancelada { color: red; }
         .concluida { color: gray; }
-        .btn { padding: 5px 10px; border: none; border-radius: 4px; cursor: pointer; text-decoration: none; font-size: 11px; margin-right: 4px; }
+        .acoes { display: flex; gap: 5px; flex-wrap: wrap; }
+        .btn { padding: 5px 10px; border: none; border-radius: 4px; cursor: pointer; text-decoration: none; font-size: 11px; display: inline-block; white-space: nowrap; }
         .btn-checkin { background: #1e3a5f; color: white; }
         .btn-checkin:hover { background: #162d4a; }
         .btn-cancelar { background: red; color: white; }
@@ -95,12 +96,14 @@ $reservas = $pdo->query("SELECT r.*, a.nome as nome_atleta FROM reserva r JOIN a
             <td class="<?= $r['estado_reserva'] ?>"><?= $r['estado_reserva'] ?></td>
             <td><?= $r['checkin'] ? 'Confirmado' : 'Pendente' ?></td>
             <td>
-                <?php if ($r['estado_reserva'] === 'ativa' && !$r['checkin']): ?>
-                    <a href="admin.reservas.php?checkin=<?= $r['id'] ?>" class="btn btn-checkin">Check-in</a>
-                <?php endif; ?>
-                <?php if ($r['estado_reserva'] === 'ativa'): ?>
-                    <a href="admin.reservas.php?cancelar=<?= $r['id'] ?>" class="btn btn-cancelar" onclick="return confirm('Cancelar esta reserva?')">Cancelar</a>
-                <?php endif; ?>
+                <div class="acoes">
+                    <?php if ($r['estado_reserva'] === 'ativa' && !$r['checkin']): ?>
+                        <a href="admin.reservas.php?checkin=<?= $r['id'] ?>" class="btn btn-checkin">Check-in</a>
+                    <?php endif; ?>
+                    <?php if ($r['estado_reserva'] === 'ativa'): ?>
+                        <a href="admin.reservas.php?cancelar=<?= $r['id'] ?>" class="btn btn-cancelar" onclick="return confirm('Cancelar esta reserva?')">Cancelar</a>
+                    <?php endif; ?>
+                </div>
             </td>
         </tr>
         <?php endforeach; ?>
